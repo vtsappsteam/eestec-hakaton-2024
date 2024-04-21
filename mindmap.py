@@ -28,7 +28,7 @@ def cleanTextBART(text):
 def wordCloudImage(text):
     text = cleanText(text)
     # Create and generate a word cloud image:
-    wordcloud = WordCloud(background_color='white', collocations=True,width=750,height=750).generate(text)
+    wordcloud = WordCloud(background_color='white', collocations=True,width=700,height=500).generate(text)
     # Display the generated image:
     wordcloud_image = wordcloud.to_image()
     return wordcloud_image

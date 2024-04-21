@@ -11,7 +11,7 @@ model = BartForConditionalGeneration.from_pretrained(model_name)
 
 
 
-def sumiranje(putanja):
+def sumiranje(putanja,x):
 
     file_path = putanja
 
@@ -21,7 +21,7 @@ def sumiranje(putanja):
 
     # Tokenize and summarize the input text using BART
     inputs = tokenizer.encode("summarize: " + input_text, return_tensors="pt", max_length=1024, truncation=True)
-    summary_ids = model.generate(inputs, max_length=1000, min_length=400, length_penalty=3.0, num_beams=2, early_stopping=True)
+    summary_ids = model.generate(inputs, max_length=x+200, min_length=x, length_penalty=1.0, num_beams=4, early_stopping=True)
 
     # Decode and output the summary
     summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
