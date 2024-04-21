@@ -25,8 +25,4 @@ def sumiranje(putanja):
 
     # Decode and output the summary
     summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-    print("Original Text:")
-    print(input_text)
-    print("\nSummary:")
-    print(summary)
     return summary
