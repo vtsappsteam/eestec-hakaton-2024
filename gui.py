@@ -27,8 +27,7 @@ def browse():
    
    if eks == "docx":
         metode.readWord(f_path)
-        naziv_fajla = os.path.basename(f_path)
-        naziv_fajla_bez_ext, extenzija = os.path.splitext(naziv_fajla)
+        naziv_fajla_bez_ext, _ = os.path.splitext(f_path)
         string = bart.sumiranje(naziv_fajla_bez_ext+".txt")
         
         tabela_okvir = tk.Frame(root, borderwidth=1, relief="solid", width=1550)
@@ -51,12 +50,61 @@ def browse():
         labela_red1_kolona2.config(image=tk_image)
         labela_red1_kolona2.image = tk_image
         labela_red1_kolona2.grid(row=1, column=1)
-
+        os.remove(naziv_fajla_bez_ext+".txt")
    
    elif eks == "pdf":
         metode.readPdf(f_path)
+        naziv_fajla_bez_ext, _ = os.path.splitext(f_path)
+        string = bart.sumiranje(naziv_fajla_bez_ext+".txt")
+        
+        tabela_okvir = tk.Frame(root, borderwidth=1, relief="solid", width=1550)
+        tabela_okvir.pack(padx=10, pady=10)
+        
+        labela_zaglavlje1 = tk.Label(tabela_okvir, text="Vaša skripta:", font=("Arial", 16, "bold"))
+        labela_zaglavlje1.grid(row=0, column=0)
+        
+        labela_zaglavlje2 = tk.Label(tabela_okvir, text="Vaša mapa uma:", font=("Arial", 16, "bold"))
+        labela_zaglavlje2.grid(row=0, column=1)
+        
+        labela_red1_kolona1 = tk.Label(tabela_okvir, text=string, font=("Arial", 14), wraplength=750)
+        labela_red1_kolona1.grid(row=1, column=0)
+
+        slicka = mindmap.wordCloudImage(string)
+        
+        tk_image = ImageTk.PhotoImage(slicka)
+        
+        labela_red1_kolona2 = tk.Label(tabela_okvir, image=tk_image, wraplength=750,borderwidth=0, relief="flat")
+        labela_red1_kolona2.config(image=tk_image)
+        labela_red1_kolona2.image = tk_image
+        labela_red1_kolona2.grid(row=1, column=1)
+        os.remove(naziv_fajla_bez_ext+".txt")
+        
    elif eks == "txt":
-        print(3)
+       
+        naziv_fajla_bez_ext, _ = os.path.splitext(f_path)
+        string = bart.sumiranje(naziv_fajla_bez_ext+".txt")
+        
+        tabela_okvir = tk.Frame(root, borderwidth=1, relief="solid", width=1550)
+        tabela_okvir.pack(padx=10, pady=10)
+        
+        labela_zaglavlje1 = tk.Label(tabela_okvir, text="Vaša skripta:", font=("Arial", 16, "bold"))
+        labela_zaglavlje1.grid(row=0, column=0)
+        
+        labela_zaglavlje2 = tk.Label(tabela_okvir, text="Vaša mapa uma:", font=("Arial", 16, "bold"))
+        labela_zaglavlje2.grid(row=0, column=1)
+        
+        labela_red1_kolona1 = tk.Label(tabela_okvir, text=string, font=("Arial", 14), wraplength=750)
+        labela_red1_kolona1.grid(row=1, column=0)
+
+        slicka = mindmap.wordCloudImage(string)
+        
+        tk_image = ImageTk.PhotoImage(slicka)
+        
+        labela_red1_kolona2 = tk.Label(tabela_okvir, image=tk_image, wraplength=750,borderwidth=0, relief="flat")
+        labela_red1_kolona2.config(image=tk_image)
+        labela_red1_kolona2.image = tk_image
+        labela_red1_kolona2.grid(row=1, column=1)
+        os.remove(naziv_fajla_bez_ext+".txt")
    else:
         print("Nepoznata ekstenzija")
 

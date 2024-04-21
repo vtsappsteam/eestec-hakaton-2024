@@ -21,6 +21,10 @@ def cleanText(text):
     cleaned_text = cleaned_text.replace('[', '').replace(']', '').replace("'", "").replace(",", "").replace("Im", "")
     return cleaned_text
 
+def cleanTextBART(text):
+    cleaned_text = re.sub(r'\([^)]*\)', '', text)
+    return cleaned_text
+
 def wordCloudImage(text):
     text = cleanText(text)
     # Create and generate a word cloud image:
